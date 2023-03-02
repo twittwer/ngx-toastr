@@ -41,10 +41,10 @@ import { ToastrService } from './toastr.service';
   </div>
   `,
 })
-export class ToastNoAnimation implements OnDestroy {
+export class ToastNoAnimation<Config extends IndividualConfig = IndividualConfig> implements OnDestroy {
   message?: string | null;
   title?: string;
-  options: IndividualConfig;
+  options: Config;
   duplicatesCount!: number;
   originalTimeout: number;
   /** width of progress bar */

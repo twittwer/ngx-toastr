@@ -64,26 +64,26 @@ export class ToastrService {
     }
   }
   /** show toast */
-  show<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}, type = '') {
+  show<Config extends IndividualConfig = IndividualConfig>(message?: string, title?: string, override: Partial<Config> = {}, type = '') {
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show successful toast */
-  success<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}) {
+  success<Config extends IndividualConfig = IndividualConfig>(message?: string, title?: string, override: Partial<Config> = {}) {
     const type = this.toastrConfig.iconClasses.success || '';
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show error toast */
-  error<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}) {
+  error<Config extends IndividualConfig = IndividualConfig>(message?: string, title?: string, override: Partial<Config> = {}) {
     const type = this.toastrConfig.iconClasses.error || '';
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show info toast */
-  info<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}) {
+  info<Config extends IndividualConfig = IndividualConfig>(message?: string, title?: string, override: Partial<Config> = {}) {
     const type = this.toastrConfig.iconClasses.info || '';
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show warning toast */
-  warning<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}) {
+  warning<Config extends IndividualConfig = IndividualConfig>(message?: string, title?: string, override: Partial<Config> = {}) {
     const type = this.toastrConfig.iconClasses.warning || '';
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
@@ -145,7 +145,7 @@ export class ToastrService {
   }
 
   /** create a clone of global config and apply individual settings */
-  private applyConfig(override: Partial<IndividualConfig> = {}): GlobalConfig {
+  private applyConfig<Config extends IndividualConfig = IndividualConfig>(override: Partial<Config> = {}): GlobalConfig {
     return { ...this.toastrConfig, ...override };
   }
 

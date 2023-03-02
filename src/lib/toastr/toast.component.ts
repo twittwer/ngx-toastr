@@ -53,10 +53,10 @@ import { ToastrService } from './toastr.service';
   ],
   preserveWhitespaces: false
 })
-export class Toast<ConfigPayload = any> implements OnDestroy {
+export class Toast<Config extends IndividualConfig = IndividualConfig> implements OnDestroy {
   message?: string | null;
   title?: string;
-  options: IndividualConfig<ConfigPayload>;
+  options: Config;
   duplicatesCount!: number;
   originalTimeout: number;
   /** width of progress bar */
